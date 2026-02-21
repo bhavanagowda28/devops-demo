@@ -14,13 +14,13 @@ pipeline {
         }
 
         stage('Deploy') {
-            steps {
-                sh '''
-                ls -l target
-                scp -o StrictHostKeyChecking=no target/*.war ec2-user@3.15.230.202:/home/ec2-user/
-                '''
-            }
+    steps {
+        sshagent(['ec2-key']) {
+            sh '''
+            scp -o StrictHostKeyChecking=no target/demo.war ec2-user@3.15.230.202:/home/ec2-user/
+            '''
         }
-
     }
 }
+        
+        
