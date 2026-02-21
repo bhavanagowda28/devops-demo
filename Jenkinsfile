@@ -38,7 +38,7 @@ pipeline {
 
         stage('Restart Tomcat') {
             steps {
-                sshagent(['ec2-key']) {
+                sshagent(['ec2-user']) {
                     sh '''
                         ssh -o StrictHostKeyChecking=no ec2-user@3.15.230.202 "
                         mv /home/ec2-user/demo.war /home/ec2-user/apache-tomcat-9.0.82/webapps/ &&
