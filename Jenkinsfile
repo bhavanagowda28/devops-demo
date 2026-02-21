@@ -2,16 +2,10 @@ pipeline {
     agent any
 
     tools {
-        maven 'maven-3'   // Make sure this name matches Jenkins Global Tool Config
+        maven 'maven-3'
     }
 
     stages {
-
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/bhavanagowda28/devops-demo.git'
-            }
-        }
 
         stage('Build') {
             steps {
