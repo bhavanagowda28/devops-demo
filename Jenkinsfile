@@ -10,10 +10,10 @@ pipeline {
     stages {
 
         stage('Clone Code') {
-            steps {
-                git 'https://github.com/yourusername/devops-demo.git'
-            }
-        }
+    steps {
+        git 'https://github.com/bhavanagowda28/devops-demo.git'
+    }
+}
 
         stage('Build WAR') {
             steps {
