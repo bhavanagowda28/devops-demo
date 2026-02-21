@@ -2,14 +2,16 @@ pipeline {
     agent any
 
     tools {
-        maven 'maven-3'
-    }
-
-    environment {
-        EC2_IP = "3.15.230.202"
+        maven 'Maven'   // Make sure this name matches Jenkins Global Tool Config
     }
 
     stages {
+
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/bhavanagowda28/devops-demo.git'
+            }
+        }
 
         stage('Build') {
             steps {
@@ -18,10 +20,13 @@ pipeline {
         }
 
         stage('Deploy') {
-    steps {
-        sh '''
-        scp -o StrictHostKeyChecking=no target/*.war ec2-user@3.15.230.202:/opt/tomcat/webapps/
-        '''
+            steps {
+                sh '''
+                ls -l target
+                scp -o StrictHostKeyChecking=no target/*.war ec2-user@3.15.230.202:/home/ec2-user/
+                '''
+            }
+        }
+
     }
 }
-            
