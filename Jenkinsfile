@@ -18,17 +18,10 @@ pipeline {
         }
 
         stage('Deploy') {
-            steps {
-                sh '''
-                scp -o StrictHostKeyChecking=no target/java-app-1.0.war ec2-user@3.15.230.202:/home/ec2-user/
-                ssh ec2-user@$EC2_IP "
-                mv demo.war apache-tomcat-9.0.82/webapps/ &&
-                cd apache-tomcat-9.0.82/bin &&
-                ./shutdown.sh &&
-                ./startup.sh
-                "
-                '''
-            }
-        }
+    steps {
+        sh '''
+        scp -o StrictHostKeyChecking=no target/*.war ec2-user@3.15.230.202:/opt/tomcat/webapps/
+        '''
     }
 }
+            
