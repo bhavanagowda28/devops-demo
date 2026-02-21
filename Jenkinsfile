@@ -28,7 +28,7 @@ pipeline {
 
         stage('Deploy to EC2') {
             steps {
-                sshagent(['ec2-key']) {
+                sshagent(['ec2-user']) {
                     sh '''
                         scp -o StrictHostKeyChecking=no target/demo.war ec2-user@3.15.230.202:/home/ec2-user/
                     '''
